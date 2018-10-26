@@ -20,6 +20,9 @@ const styles = theme => ({
     display: "grid",
     flexDirection: "column",
     justifyContent: "center"
+  },
+  mybutton: {
+    width: "100%"
   }
 });
 
@@ -34,7 +37,7 @@ class TabForm extends React.Component {
       text: this.state.taskTyped
     };
     requests
-      .postOne("todoTasks", body)
+      .postOne(this.props.itemsKind, body)
       .then(response => {
         this.setState({
           queryResponse: response.data
@@ -74,7 +77,10 @@ class TabForm extends React.Component {
             <Button
               variant="outlined"
               color="primary"
-              className={classNames(classes.button, classes.centered)}
+              className={classNames(
+                classes.button,
+                styles.mybutton
+              )}
               onClick={() => {
                 this.addTask(this.state.taskTyped);
               }}
@@ -84,9 +90,14 @@ class TabForm extends React.Component {
             <Button
               variant="outlined"
               color="secondary"
-              className={classNames(classes.button, classes.centered)}
+              containerViewStyle={{ width: "100%", marginLeft: 0 }}
+              className={classNames(
+                classes.button,
+                classes.centered,
+                styles.mybutton
+              )}
               onClick={() => {
-                this.props.removeStrikethroughs();
+                this.props.removeStrikethroughs(this.props);
               }}
             >
               Remover riscados

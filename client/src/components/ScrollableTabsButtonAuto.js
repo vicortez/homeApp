@@ -5,12 +5,14 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import SimpleList from "./SimpleList.js";
+import ShoppingListTab from "./ShoppingListTab";
 import classNames from "classnames";
+import NoticesTab from "./NoticesTab";
+import TabForm from "./TabForm";
 
 function TabContainer(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component="div" style={{ padding: 2 }}>
       {props.children}
     </Typography>
   );
@@ -51,7 +53,7 @@ class ScrollableTabsButtonAuto extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classNames(classes.root)}>
+      <div className={classNames(classes)}>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -67,10 +69,19 @@ class ScrollableTabsButtonAuto extends React.Component {
             <Tab label="Receitas" />
           </Tabs>
         </AppBar>
-        {value === 0 && <SimpleList listItems={this.state.shoppingListItems} />}
-        {value === 1 && <Square>Item Two</Square>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
-        {value === 3 && <TabContainer>Item Four</TabContainer>}
+        {value === 0 && (
+          <TabContainer>
+            <ShoppingListTab />
+          </TabContainer>
+        )}
+        {value === 1 && (
+          <TabContainer>
+            <NoticesTab />
+          </TabContainer>
+        )}
+        {value === 2 && (<Square>hi</Square>
+        )}
+        {value === 3 && <Square>Item Two</Square>}
       </div>
     );
   }

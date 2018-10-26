@@ -16,26 +16,114 @@ import requests from "../requests";
 import TabForm from "./TabForm";
 
 const styles = theme => ({
-    root: {
-      width: "100%",
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper
-    },
-    paddedList: {
-      marginTop: "2vh"
-    },
-    centerChilds: {
-      display: "grid",
-      flexDirection: "column",
-      justifyContent: "center"
-    }
-  });
-  
-class SimpleList extends React.Component {
-  state = {};
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  },
+  paddedList: {
+    marginTop: "1vh"
+  },
+  centerChilds: {
+    display: "grid",
+    flexDirection: "column",
+    justifyContent: "center"
+  }
+});
+
+class ShoppingListTab extends React.Component {
+  state = {
+    value: 0,
+    shoppingListItems: [""]
+  };
+
+  fetchFromDatabase = () => {
+    requests
+      .getAll("todoTasks")
+      .then(response => {
+        let tasksArray = response.data.map(el => {
+          this.state[el._id] = false;
+          return { text: el.text, _id: el._id };
+        });
+        this.setState({
+          shoppingListItems: tasksArray,
+          loaded: true
+        });
+      })
+      .catch(error => console.log(error));
+  };
+
+  componentDidMount() {
+    this.fetchFromDatabase();
+  }
+
+  toggleStriketrough = _id => {
+    this.setState({
+      [_id]: this.state[_id] === true ? false : true
+    });
+    console.log(this.state);
+  };
+
+  removeStrikethroughs = () => {
+    this.state.shoppingListItems.map(el => {
+      if (this.state[el._id] === true) {
+        requests
+          .deleteSome("todoTasks", el._id)
+          .then(response => {
+            this.setState({
+              queryResponse: response.data,
+              loaded: true
+            });
+            console.log(response.data);
+            this.fetchFromDatabase();
+          })
+          .catch(error => console.log(error));
+      }
+    });
+  };
+
   render() {
-    return <div />;
+    const { classes } = this.props;
+    //console.log(styles);
+    return (
+      <div
+        className={classNames(classes.root, classes.paddedList, "margin-auto")}
+      >
+        <TabForm
+          itemsKind="TodoTasks"
+          removeStrikethroughs={this.removeStrikethroughs}
+          fetchFromDatabase={this.fetchFromDatabase}
+        />
+        <Divider />
+        <List component="nav">
+          {this.state.shoppingListItems.map(el => {
+            return (
+              <ListItem
+                onClick={() => {
+                  this.toggleStriketrough(el._id);
+                }}
+                button
+                className={classNames("low-padding-vertically")}
+              >
+                <ListItemText
+                  className={
+                    this.state[el._id] === true
+                      ? "strikethrough-text"
+                      : "normal-text"
+                  }
+                  primary={el.text}
+                />
+              </ListItem>
+            );
+          })}
+        </List>
+      </div>
+    );
   }
 }
+
+ShoppingListTab.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(ShoppingListTab);
