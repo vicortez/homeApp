@@ -8,6 +8,7 @@ exports.encodeQueryData = data => {
 };
 
 exports.getAll = entity => {
+  console.log("requested all " + entity)
   return axios.get(`/${entity}/all/`);
 };
 

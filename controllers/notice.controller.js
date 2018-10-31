@@ -21,7 +21,7 @@ exports.add_notice = (req, res) => {
 };
 
 exports.get_all_notices = (req, res) => {
-  console.log("comeone asked to see all");
+  console.log("comeone asked to see all notices");
   Notice.find()
     .then(doc => {
       console.log(doc);

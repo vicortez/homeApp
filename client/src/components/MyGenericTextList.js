@@ -11,7 +11,6 @@ import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import MyGenericTab from "./MyGenericTab";
 
 const styles = theme => ({
   root: {
@@ -29,17 +28,15 @@ const styles = theme => ({
   }
 });
 
-class NoticesTab extends React.Component {
-  state = {
-    value: 0,
-    notices: [""]
-  };
+class MyGenericList extends React.Component {
+  state = {};
 
   render() {
     const { classes } = this.props;
-
-    return <MyGenericTab itemsKind={"notices"} />;
+    console.log("genericList: ")
+    console.log(this.props)
+    return <div>hi</div>;
   }
 }
 
-export default withStyles(styles)(NoticesTab);
+export default withStyles(styles)(MyGenericList);

@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -31,23 +31,6 @@ class TabForm extends React.Component {
     taskTyped: ""
   };
 
-  addTask = taskTyped => {
-    console.log(taskTyped);
-    let body = {
-      text: this.state.taskTyped
-    };
-    requests
-      .postOne(this.props.itemsKind, body)
-      .then(response => {
-        this.setState({
-          queryResponse: response.data
-        });
-        this.props.fetchFromDatabase();
-      })
-      .catch(error => console.log(error));
-    this.clearInput();
-  };
-
   handleChange = taskTyped => event => {
     this.setState({
       [taskTyped]: event.target.value
@@ -56,6 +39,11 @@ class TabForm extends React.Component {
 
   clearInput = () => {
     this.state.taskTyped = "";
+  };
+
+  callAddTask = () => {
+    this.props.addTask(this.state.taskTyped);
+    this.clearInput();
   };
 
   render() {
@@ -77,12 +65,9 @@ class TabForm extends React.Component {
             <Button
               variant="outlined"
               color="primary"
-              className={classNames(
-                classes.button,
-                styles.mybutton
-              )}
+              className={classNames(classes.button, styles.mybutton)}
               onClick={() => {
-                this.addTask(this.state.taskTyped);
+                this.callAddTask();
               }}
             >
               Adicionar item
@@ -97,7 +82,7 @@ class TabForm extends React.Component {
                 styles.mybutton
               )}
               onClick={() => {
-                this.props.removeStrikethroughs(this.props);
+                this.props.removeStrikethroughs();
               }}
             >
               Remover riscados

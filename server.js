@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 
 const todoTask = require("./routes/todoTask.route"); // Imports routes for the Shopping list items
 const notice = require("./routes/notice.route"); // Imports routes for the notices
+const recipe = require("./routes/recipe.route"); // Imports recipes for the notices
 
 // Set up mongoose connection
 const Database = require("./models/Database");
@@ -18,6 +19,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use("/todoTasks", todoTask);
 app.use("/notices", notice);
+app.use("/recipes", recipe);
 
 // create a GET route
 app.get("/express_backend", (req, res) => {
