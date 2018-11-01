@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.use("/todoTasks", todoTask);
+app.use("/shoppingListItems", todoTask);
 app.use("/notices", notice);
 app.use("/recipes", recipe);
 

@@ -11,6 +11,7 @@ import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import RecipeCard from "./RecipeCard.js"
 
 const styles = theme => ({
   root: {
@@ -28,15 +29,19 @@ const styles = theme => ({
   }
 });
 
-class MyGenericList extends React.Component {
+class RecipeTab extends React.Component {
   state = {};
 
   render() {
     const { classes } = this.props;
-    console.log("genericList: ")
-    console.log(this.props)
-    return <div>hi</div>;
+    console.log("genericList: ");
+    console.log(this.props);
+    return (
+      <ListItem>
+        <RecipeCard />
+      </ListItem>
+    );
   }
 }
 
-export default withStyles(styles)(MyGenericList);
+export default withStyles(styles)(RecipeTab);

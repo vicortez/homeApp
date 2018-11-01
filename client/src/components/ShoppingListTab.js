@@ -42,7 +42,7 @@ class ShoppingListTab extends React.Component {
     const { classes } = this.props;
     //console.log(styles);
 
-    return <MyGenericTab itemsKind={"TodoTasks"} />;
+    return <MyGenericTab itemsKind={"shoppingListItems"} />;
   }
 }
 

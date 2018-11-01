@@ -12,6 +12,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Loading from "./Loading";
+import SimpleTextList from "./SimpleTextList";
+import RecipeTab from "./RecipeTab";
 
 const styles = theme => ({
   root: {
@@ -40,13 +42,15 @@ class MyGenericTab extends React.Component {
       .getAll(this.props.itemsKind)
       .then(response => {
         let tasksArray = response.data.map(el => {
-          this.state[el._id] = false;
-          return { text: el.text, _id: el._id };
+          return { text: el.text, _id: el._id, strikethroughed: false };
         });
+
         this.setState({
           [this.props.itemsKind]: tasksArray,
           loaded: true
         });
+        console.log("fetched, state:");
+        console.log(this.state);
       })
       .catch(error => console.log(error));
   };
@@ -56,15 +60,39 @@ class MyGenericTab extends React.Component {
   }
 
   toggleStriketrough = _id => {
-    this.setState({
-      [_id]: this.state[_id] === true ? false : true
+    let newarray = this.state[this.props.itemsKind].slice();
+    newarray.forEach(el => {
+      if (el._id == _id) {
+        el.strikethroughed = !el.strikethroughed;
+      }
     });
+    this.setState({
+      [this.props.itemsKind]: newarray
+    });
+    console.log("new state after toggling:");
     console.log(this.state);
   };
 
   removeStrikethroughs = () => {
     this.state[this.props.itemsKind].map(el => {
       if (this.state[el._id] === true) {
+        requests
+          .deleteSome(this.props.itemsKind, el._id)
+          .then(response => {
+            this.setState({
+              queryResponse: response.data,
+              loaded: true
+            });
+            console.log(response.data);
+            this.fetchFromDatabase();
+          })
+          .catch(error => console.log(error));
+      }
+    });
+  };
+  removeStrikethroughs2 = () => {
+    this.state[this.props.itemsKind].map(el => {
+      if (el.strikethroughed) {
         requests
           .deleteSome(this.props.itemsKind, el._id)
           .then(response => {
@@ -97,54 +125,54 @@ class MyGenericTab extends React.Component {
 
   render() {
     const { classes } = this.props;
+    console.log("rendering. state:");
     console.log(this.state);
 
-    return(
-    <div
-      className={classNames(classes.root, classes.paddedList, "margin-auto")}
-    >
-      <TabForm
-        addTask={this.addTask}
-        itemsKind={this.props.itemsKind}
-        removeStrikethroughs={this.removeStrikethroughs}
-        ivider
-      />
-
-
-      {this.state.loaded ?
-        <List component="nav">
-        {this.state[this.props.itemsKind].map(el => {
-          return (
-            <ListItem
-              onClick={() => {
-                this.toggleStriketrough(el._id);
-              }}
-              button
-              className={classNames("low-padding-vertically")}
-            >
-              <ListItemText
-                className={
-                  this.state[el._id] === true
-                    ? "strikethrough-text"
-                    : "normal-text"
-                }
-                primary={el.text}
+    return (
+      <div
+        className={classNames(classes.root, classes.paddedList, "margin-auto")}
+      >
+        <TabForm
+          addTask={this.addTask}
+          itemsKind={this.props.itemsKind}
+          removeStrikethroughs={this.removeStrikethroughs2}
+        />
+        <Divider />
+        {this.state.loaded ? (
+          <div>
+            {this.props.itemsKind === "shoppingListItems" && (
+              <SimpleTextList
+                itemsKind={this.props.itemsKind}
+                textElements={this.state[this.props.itemsKind]}
+                toggleStriketrough={this.toggleStriketrough}
               />
-            </ListItem>
-          );
-        })}
-        
-      </List>
-                    
-      : <Loading/>
-                }
-
-
-
-
-      
-      
-    </div>
+            )}
+            {this.props.itemsKind === "notices" && (
+              <SimpleTextList
+                itemsKind={this.props.itemsKind}
+                textElements={this.state[this.props.itemsKind]}
+                toggleStriketrough={this.toggleStriketrough}
+              />
+            )}
+            {this.props.itemsKind === "menus" && (
+              <SimpleTextList
+                itemsKind={this.props.itemsKind}
+                textElements={this.state[this.props.itemsKind]}
+                toggleStriketrough={this.toggleStriketrough}
+              />
+            )}
+            {this.props.itemsKind === "recipes" && (
+              <RecipeTab
+                itemsKind={this.props.itemsKind}
+                textElements={this.state[this.props.itemsKind]}
+                toggleStriketrough={this.toggleStriketrough}
+              />
+            )}
+          </div>
+        ) : (
+          <Loading />
+        )}
+      </div>
     );
   }
 }

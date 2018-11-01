@@ -9,6 +9,7 @@ import ShoppingListTab from "./ShoppingListTab";
 import classNames from "classnames";
 import NoticesTab from "./NoticesTab";
 import TabForm from "./TabForm";
+import RecipeTab from "./RecipeTab";
 
 function TabContainer(props) {
   return (
@@ -79,9 +80,12 @@ class ScrollableTabsButtonAuto extends React.Component {
             <NoticesTab />
           </TabContainer>
         )}
-        {value === 2 && (<Square>hi</Square>
+        {value === 2 && <Square>hi</Square>}
+        {value === 3 && (
+          <TabContainer>
+            <RecipeTab />
+          </TabContainer>
         )}
-        {value === 3 && <Square>Item Two</Square>}
       </div>
     );
   }

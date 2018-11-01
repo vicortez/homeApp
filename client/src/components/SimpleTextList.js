@@ -16,15 +16,18 @@ const styles = theme => ({
   }
 });
 
-class SimpleList extends React.Component {
+class SimpleTextList extends React.Component {
   state = {};
+
   render() {
-    console.log(this.props.shoppingListItems)
+    console.log("TextElements:");
+    console.log(this.props.textElements);
     return (
       <List component="nav">
-        {this.props.shoppingListItems.map(el => {
+        {this.props.textElements.map(el => {
           return (
             <ListItem
+              key={el._id}
               onClick={() => {
                 this.props.toggleStriketrough(el._id);
               }}
@@ -33,7 +36,7 @@ class SimpleList extends React.Component {
             >
               <ListItemText
                 className={
-                  this.props[el._id] === true
+                  el.strikethroughed === true
                     ? "strikethrough-text"
                     : "normal-text"
                 }
@@ -47,4 +50,4 @@ class SimpleList extends React.Component {
   }
 }
 
-export default withStyles(styles)(SimpleList);
+export default withStyles(styles)(SimpleTextList);
