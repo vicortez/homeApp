@@ -26,7 +26,7 @@ let RecipeSchema = new mongoose.Schema({
     }
   },
 
-  instructions: {
+  method: {
     type: String,
     required: true,
     unique: false,

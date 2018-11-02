@@ -59,7 +59,7 @@ class RecipeCard extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title="Test card"
+          title= {this.props.title}
         />
 
         <CardActions className={classes.actions} disableActionSpacing>
@@ -79,12 +79,12 @@ class RecipeCard extends React.Component {
           <CardContent>
             <Typography paragraph>Ingredientes:</Typography>
             <Typography paragraph>
-              {/* ingredientes */}
+              {this.props.igredients}
             </Typography>
             
             <Typography paragraph>Método:</Typography>
             <Typography>
-              {/* metodo */}
+              {this.props.method}
             </Typography>
           </CardContent>
         </Collapse>

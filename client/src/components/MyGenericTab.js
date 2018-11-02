@@ -13,7 +13,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Loading from "./Loading";
 import SimpleTextList from "./SimpleTextList";
-import RecipeTab from "./RecipeTab";
+import RecipeList from "./RecipeList";
 
 const styles = theme => ({
   root: {
@@ -162,9 +162,9 @@ class MyGenericTab extends React.Component {
               />
             )}
             {this.props.itemsKind === "recipes" && (
-              <RecipeTab
+              <RecipeList
                 itemsKind={this.props.itemsKind}
-                textElements={this.state[this.props.itemsKind]}
+                recipeElements={this.state[this.props.itemsKind]}
                 toggleStriketrough={this.toggleStriketrough}
               />
             )}

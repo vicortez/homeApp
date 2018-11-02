@@ -11,7 +11,8 @@ import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import RecipeCard from "./RecipeCard.js"
+import RecipeCard from "./RecipeCard.js";
+import MyGenericTab from "./MyGenericTab";
 
 const styles = theme => ({
   root: {
@@ -36,11 +37,7 @@ class RecipeTab extends React.Component {
     const { classes } = this.props;
     console.log("genericList: ");
     console.log(this.props);
-    return (
-      <ListItem>
-        <RecipeCard />
-      </ListItem>
-    );
+    return <MyGenericTab itemsKind={"recipes"} />;
   }
 }
 
