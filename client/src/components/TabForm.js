@@ -1,4 +1,4 @@
-  import React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -72,21 +72,24 @@ class TabForm extends React.Component {
             >
               Adicionar item
             </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              containerViewStyle={{ width: "100%", marginLeft: 0 }}
-              className={classNames(
-                classes.button,
-                classes.centered,
-                styles.mybutton
-              )}
-              onClick={() => {
-                this.props.removeStrikethroughs();
-              }}
-            >
-              Remover riscados
-            </Button>
+            {(this.props.itemsKind === "shoppingListItems" ||
+              this.props.itemsKind === "notices") && (
+              <Button
+                variant="outlined"
+                color="secondary"
+                containerViewStyle={{ width: "100%", marginLeft: 0 }}
+                className={classNames(
+                  classes.button,
+                  classes.centered,
+                  styles.mybutton
+                )}
+                onClick={() => {
+                  this.props.removeStrikethroughs();
+                }}
+              >
+                Remover riscados
+              </Button>
+            )}
           </div>
         </div>
       </form>

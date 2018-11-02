@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 let validator = require("validator");
 
-let TodoTaskSchema = new mongoose.Schema({
+let ShoppingListItemSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ let TodoTaskSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("TodoTask", TodoTaskSchema);
+module.exports = mongoose.model("ShoppingListItem", ShoppingListItemSchema);

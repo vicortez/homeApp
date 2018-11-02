@@ -15,6 +15,7 @@ import "../index.css";
 import requests from "../requests";
 import TabForm from "./TabForm";
 import MyGenericTab from "./MyGenericTab";
+import GenericTextTab from "./GenericTextTab";
 
 const styles = theme => ({
   root: {
@@ -42,7 +43,7 @@ class ShoppingListTab extends React.Component {
     const { classes } = this.props;
     //console.log(styles);
 
-    return <MyGenericTab itemsKind={"shoppingListItems"} />;
+    return <GenericTextTab itemsKind={"shoppingListItems"} />;
   }
 }
 

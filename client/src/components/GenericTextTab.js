@@ -13,9 +13,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Loading from "./Loading";
 import SimpleTextList from "./SimpleTextList";
-import RecipeList from "./RecipeList";
-import Popup from "reactjs-popup";
-import RecipePopUp from "./RecipePopUp";
 
 const styles = theme => ({
   root: {
@@ -33,7 +30,7 @@ const styles = theme => ({
   }
 });
 
-class MyGenericTab extends React.Component {
+class GenericTextTab extends React.Component {
   state = {
     value: 0,
     [this.props.itemsKind]: [""],
@@ -95,46 +92,18 @@ class MyGenericTab extends React.Component {
   };
 
   addTask = taskTyped => {
-    if (
-      this.props.itemsKind === "shoppingListItems" ||
-      this.props.itemsKind === "notices"
-    ) {
-      let body = {
-        text: taskTyped
-      };
-      requests
-        .postOne(this.props.itemsKind, body)
-        .then(response => {
-          this.setState({
-            queryResponse: response.data
-          });
-          this.fetchFromDatabase();
-        })
-        .catch(error => console.log(error));
-    } else if (this.props.itemsKind === "recipes") {
-      let body = {
-        title: taskTyped.title,
-        ingredients: taskTyped.ingredients,
-        method: taskTyped.method
-      };
-      requests
-        .postOne(this.props.itemsKind, body)
-        .then(response => {
-          this.setState({
-            queryResponse: response.data
-          });
-          this.fetchFromDatabase();
-        })
-        .catch(error => console.log(error));
-    }
-  };
-  openModal = () => {
-    if (this.props.itemsKind === "recipes") {
-      this.setState({ popUpOpen: true });
-    }
-  };
-  closeModal = () => {
-    this.setState({ popUpOpen: false });
+    let body = {
+      text: taskTyped
+    };
+    requests
+      .postOne(this.props.itemsKind, body)
+      .then(response => {
+        this.setState({
+          queryResponse: response.data
+        });
+        this.fetchFromDatabase();
+      })
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -146,7 +115,6 @@ class MyGenericTab extends React.Component {
       <div
         className={classNames(classes.root, classes.paddedList, "margin-auto")}
       >
-        <RecipePopUp open={this.state.popupIsOpen} />
         <TabForm
           addTask={this.addTask}
           itemsKind={this.props.itemsKind}
@@ -154,11 +122,13 @@ class MyGenericTab extends React.Component {
         />
         <Divider />
         {this.state.loaded ? (
-          <RecipeList
-            itemsKind={this.props.itemsKind}
-            recipeElements={this.state[this.props.itemsKind]}
-            toggleStriketrough={this.toggleStriketrough}
-          />
+          <div>
+            <SimpleTextList
+              itemsKind={this.props.itemsKind}
+              textElements={this.state[this.props.itemsKind]}
+              toggleStriketrough={this.toggleStriketrough}
+            />
+          </div>
         ) : (
           <Loading />
         )}
@@ -167,4 +137,4 @@ class MyGenericTab extends React.Component {
   }
 }
 
-export default withStyles(styles)(MyGenericTab);
+export default withStyles(styles)(GenericTextTab);

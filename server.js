@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const todoTask = require("./routes/todoTask.route"); // Imports routes for the Shopping list items
+const shoppingListItem = require("./routes/shoppingListItem.route"); // Imports routes for the Shopping list items
 const notice = require("./routes/notice.route"); // Imports routes for the notices
 const recipe = require("./routes/recipe.route"); // Imports recipes for the notices
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.use("/shoppingListItems", todoTask);
+app.use("/shoppingListItems", shoppingListItem);
 app.use("/notices", notice);
 app.use("/recipes", recipe);
 
