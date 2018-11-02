@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import ShoppingListTab from "./ShoppingListTab";
 import classNames from "classnames";
 import NoticesTab from "./NoticesTab";
-import TabForm from "./TabForm";
 import RecipeTab from "./RecipeTab";
 
 function TabContainer(props) {

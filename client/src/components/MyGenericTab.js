@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import "../index.css";
 import requests from "../requests";
-import TabForm from "./TabForm";
+import TextTabForm from "./TextTabForm";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -147,7 +147,7 @@ class MyGenericTab extends React.Component {
         className={classNames(classes.root, classes.paddedList, "margin-auto")}
       >
         <RecipePopUp open={this.state.popupIsOpen} />
-        <TabForm
+        <TextTabForm
           addTask={this.addTask}
           itemsKind={this.props.itemsKind}
           removeStrikethroughs={this.removeStrikethroughs}

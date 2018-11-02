@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import "../index.css";
 import requests from "../requests";
-import TabForm from "./TabForm";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -34,10 +33,7 @@ class RecipePopUp extends React.Component {
             <a className="close" onClick={this.closeModal}>
               &times;
             </a>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-            magni omnis delectus nemo, maxime molestiae dolorem numquam
-            mollitia, voluptate ea, accusamus excepturi deleniti ratione
-            sapiente! Laudantium, aperiam doloribus. Odit, aut.
+             {this.props.recipeTitle}
           </div>
         </Popup>
       </div>

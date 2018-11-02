@@ -26,7 +26,7 @@ const styles = theme => ({
   }
 });
 
-class TabForm extends React.Component {
+class TextTabForm extends React.Component {
   state = {
     taskTyped: ""
   };
@@ -97,4 +97,4 @@ class TabForm extends React.Component {
   }
 }
 
-export default withStyles(styles)(TabForm);
+export default withStyles(styles)(TextTabForm);

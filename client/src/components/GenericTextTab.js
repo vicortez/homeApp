@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import "../index.css";
 import requests from "../requests";
-import TabForm from "./TabForm";
+import TextTabForm from "./TextTabForm";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -115,7 +115,7 @@ class GenericTextTab extends React.Component {
       <div
         className={classNames(classes.root, classes.paddedList, "margin-auto")}
       >
-        <TabForm
+        <TextTabForm
           addTask={this.addTask}
           itemsKind={this.props.itemsKind}
           removeStrikethroughs={this.removeStrikethroughs}

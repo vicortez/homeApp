@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import "../index.css";
 import requests from "../requests";
-import TabForm from "./TabForm";
+import TextTabForm from "./TextTabForm";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -16,8 +16,6 @@ import SimpleTextList from "./SimpleTextList";
 import RecipeList from "./RecipeList";
 import Popup from "reactjs-popup";
 import RecipePopUp from "./RecipePopUp";
-
-import GenericTextTab from "./GenericTextTab";
 
 const styles = theme => ({
   root: {
@@ -39,7 +37,8 @@ class RecipeTab extends React.Component {
   state = {
     value: 0,
     recipes: [""],
-    popupIsOpen: false
+    popupIsOpen: false,
+    recipeTyped: ""
   };
 
   fetchFromDatabase = () => {
@@ -64,43 +63,11 @@ class RecipeTab extends React.Component {
     this.fetchFromDatabase();
   }
 
-  toggleStriketrough = _id => {
-    let newarray = this.state.recipes.slice();
-    newarray.forEach(el => {
-      if (el._id == _id) {
-        el.strikethroughed = !el.strikethroughed;
-      }
-    });
-    this.setState({
-      recipes: newarray
-    });
-    console.log("new state after toggling:");
-    console.log(this.state);
-  };
-
-  removeStrikethroughs = () => {
-    this.state.recipes.map(el => {
-      if (el.strikethroughed) {
-        requests
-          .deleteSome("recipes", el._id)
-          .then(response => {
-            this.setState({
-              queryResponse: response.data,
-              loaded: true
-            });
-            console.log(response.data);
-            this.fetchFromDatabase();
-          })
-          .catch(error => console.log(error));
-      }
-    });
-  };
-
-  composeNewRecipe = ()=>{
-    this.setState({popupIsOpen: !this.state.popupIsOpen})
+  composeNewRecipe = () => {
+    this.setState({ popupIsOpen: !this.state.popupIsOpen });
     let body = {};
     this.addRecipe(body);
-  }
+  };
   addRecipe = taskTyped => {
     let body = {
       title: taskTyped.title,
@@ -115,6 +82,12 @@ class RecipeTab extends React.Component {
     });
   };
 
+  setRecipeTitle = title => {
+    this.setState({
+      recipeTyped: title
+    });
+  };
+
   render() {
     const { classes } = this.props;
     console.log("rendering. state:");
@@ -124,8 +97,12 @@ class RecipeTab extends React.Component {
       <div
         className={classNames(classes.root, classes.paddedList, "margin-auto")}
       >
-        <RecipePopUp open={this.state.popupIsOpen} />
-        <TabForm
+        <RecipePopUp
+          open={this.state.popupIsOpen}
+          recipeTitle={this.state.recipeTyped}
+          setRecipeTitle={this.setRecipeTitle}
+        />
+        <TextTabForm
           addTask={this.composeNewRecipe}
           itemsKind={"recipes"}
           removeStrikethroughs={this.removeStrikethroughs}
