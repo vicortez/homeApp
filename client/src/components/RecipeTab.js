@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import "../index.css";
 import requests from "../requests";
-import TextTabForm from "./TextTabForm";
+import RecipeTabForm from "./TextTabForm";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -102,7 +102,7 @@ class RecipeTab extends React.Component {
           recipeTitle={this.state.recipeTyped}
           setRecipeTitle={this.setRecipeTitle}
         />
-        <TextTabForm
+        <RecipeTabForm
           addTask={this.composeNewRecipe}
           itemsKind={"recipes"}
           removeStrikethroughs={this.removeStrikethroughs}
