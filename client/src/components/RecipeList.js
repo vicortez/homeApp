@@ -31,7 +31,6 @@ class RecipeList extends React.Component {
             <ListItem
               key={el._id}
               onClick={() => {
-                this.props.toggleStriketrough(el._id);
               }}
               button
               className={classNames("low-padding-vertically")}
