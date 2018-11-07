@@ -30,11 +30,14 @@ body {
   text-decoration: none;
 }
 
-
 .margin-auto {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
   position: relative;
   text-align: center;
+}
+
+.pctscreen {
+  width: 90% !important;
 }

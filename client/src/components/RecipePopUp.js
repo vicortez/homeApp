@@ -80,6 +80,7 @@ class RecipePopUp extends React.Component {
           open={this.props.open}
           closeOnDocumentClick={false}
           onClose={this.props.togglePopUp}
+          className={classNames("pctscreen")}
         >
           <div className= {"margin-auto"}>
             <Button className="close" onClick={this.props.onClose}>
