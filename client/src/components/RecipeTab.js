@@ -66,7 +66,7 @@ class RecipeTab extends React.Component {
   composeNewRecipe = () => {
     this.setState({ popupIsOpen: !this.state.popupIsOpen });
     let body = {};
-    this.addRecipe(body);
+    
   };
 
   addRecipe = recipeTyped => {
