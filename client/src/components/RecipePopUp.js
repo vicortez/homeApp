@@ -129,7 +129,7 @@ class RecipePopUp extends React.Component {
                 this.callAddTaskMethod();
               }}
             >
-              Adicionar método de preparo
+                Adicionar método de preparo
             </Button>
           </div>
         </Popup>
