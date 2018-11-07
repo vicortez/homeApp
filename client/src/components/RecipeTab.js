@@ -68,13 +68,14 @@ class RecipeTab extends React.Component {
     let body = {};
     this.addRecipe(body);
   };
-  addRecipe = taskTyped => {
+
+  addRecipe = recipeTyped => {
     let body = {
-      title: taskTyped.title,
-      ingredients: taskTyped.ingredients,
-      method: taskTyped.method
+      title: recipeTyped.title,
+      ingredients: recipeTyped.ingredients,
+      method: recipeTyped.method
     };
-    requests.postOne("recipes", body).then(response => {
+    requests.postOneRecipe(body).then(response => {
       this.setState({
         queryResponse: response.data
       });
@@ -101,6 +102,7 @@ class RecipeTab extends React.Component {
           open={this.state.popupIsOpen}
           recipeTitle={this.state.recipeTyped}
           setRecipeTitle={this.setRecipeTitle}
+          addTask={this.addRecipe}
         />
         <RecipeTabForm
           addTask={this.composeNewRecipe}

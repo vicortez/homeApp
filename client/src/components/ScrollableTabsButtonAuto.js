@@ -65,7 +65,6 @@ class ScrollableTabsButtonAuto extends React.Component {
           >
             <Tab label="Lista de Compras" />
             <Tab label="Avisos" />
-            <Tab label="Cardapio" />
             <Tab label="Receitas" />
           </Tabs>
         </AppBar>
@@ -79,8 +78,7 @@ class ScrollableTabsButtonAuto extends React.Component {
             <NoticesTab />
           </TabContainer>
         )}
-        {value === 2 && <Square>hi</Square>}
-        {value === 3 && (
+        {value === 2 && (
           <TabContainer>
             <RecipeTab />
           </TabContainer>
