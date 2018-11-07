@@ -64,7 +64,7 @@ class RecipeTab extends React.Component {
   }
 
   composeNewRecipe = () => {
-    this.setState({ popupIsOpen: !this.state.popupIsOpen });
+    this.togglePopUp();
     let body = {};
     
   };
@@ -89,6 +89,10 @@ class RecipeTab extends React.Component {
     });
   };
 
+  togglePopUp = () => {
+    this.setState({ popupIsOpen: !this.state.popupIsOpen });
+  }
+
   render() {
     const { classes } = this.props;
     console.log("rendering. state:");
@@ -103,6 +107,8 @@ class RecipeTab extends React.Component {
           recipeTitle={this.state.recipeTyped}
           setRecipeTitle={this.setRecipeTitle}
           addTask={this.addRecipe}
+          onClose={this.togglePopUp}
+          
         />
         <RecipeTabForm
           addTask={this.composeNewRecipe}

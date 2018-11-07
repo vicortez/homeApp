@@ -41,19 +41,34 @@ class RecipePopUp extends React.Component {
     this.state = { open: false };
   };
 
-  handleChange = taskTyped => event => {
+  handleChangeIngredient = ingregientTyped => event => {
     this.setState({
-      [taskTyped]: event.target.value
+      [ingregientTyped]: event.target.value
     });
   };
 
-  clearInput = () => {
-    this.state.taskTyped = "";
+  handleChangeMethod = methodTyped => event => {
+    this.setState({
+      [methodTyped]: event.target.value
+    });
   };
-  
-  callAddTask = () => {
-    this.props.addTask(this.state.taskTyped);
-    this.clearInput();
+
+  clearInputIngregient = () => {
+    this.state.ingredientTyped = "";
+  };
+
+  callAddTaskIngredient = () => {
+    this.props.addTask(this.state.ingredientTyped);
+    this.clearInputIngredient();
+  };
+
+  clearInputMethod = () => {
+    this.state.methodTyped = "";
+  };
+
+  callAddTaskMethod = () => {
+    this.props.addTask(this.state.methodTyped);
+    this.clearInputMethod();
   };
 
   render() {
@@ -63,60 +78,61 @@ class RecipePopUp extends React.Component {
       <div>
         <Popup
           open={this.props.open}
-          closeOnDocumentClick
-          onClose={this.closeModal}
+          closeOnDocumentClick={false}
+          onClose={this.props.togglePopUp}
         >
-          {/* <div className="modal">
-            <a className="close" onClick={this.closeModal}>
+          <div className="modal">
+            <Button className="close" onClick={this.props.onClose}>
               &times;
-            </a>
-             {this.props.recipeTitle}
-          </div> */}
+            </Button>
+          </div>
 
           <div className={"center-childs-grid"}>
+            {this.props.recipeTitle}
+
             <TextField
               id="outlined-name"
               label="Adicionar novo item"
               className={classNames(classes.textField, "auto-margin")}
-              value={this.state.taskTyped}
-              onChange={this.handleChange("taskTyped")}
+              value={this.state.ingregientTyped}
+              onChange={this.handleChangeIngredient("ingregientTyped")}
               margin="normal"
               variant="outlined"
             />
             <Button                             // add ingredientes
-                variant="outlined"
-                color="primary"
-                className={classNames(styles.mybutton)}
-                onClick={() => {
-                  this.callAddTask();
-                }}
-              >
-                Adicionar ingrediente
+              variant="outlined"
+              color="primary"
+              className={classNames(styles.mybutton)}
+              onClick={() => {
+                this.callAddTaskIngredient();
+              }}
+            >
+              Adicionar ingrediente
               </Button>
 
-              <TextField
-                id="outlined-name"
-                label="Adicionar novo item"
-                className={classNames(classes.textField, "auto-margin")}
-                value={this.state.taskTyped}
-                onChange={this.handleChange("taskTyped")}
-                margin="normal"
-                variant="outlined"
-              />
-              <Button                           // add method
-                variant="outlined"
-                color="primary"
-                className={classNames(styles.mybutton)}
-                onClick={() => {
-                  this.callAddTask();
-                }}
-              >
-                Adicionar método de preparo
+            <TextField
+              id="outlined-name"
+              label="Adicionar novo item"
+              className={classNames(classes.textField, "auto-margin")}
+              value={this.state.methodTyped}
+              onChange={this.handleChangeMethod("methodTyped")}
+              margin="normal"
+              variant="outlined"
+            />
+            <Button                           // add method
+              variant="outlined"
+              color="primary"
+              className={classNames(styles.mybutton)}
+              onClick={() => {
+                this.callAddTaskMethod();
+              }}
+            >
+              Adicionar método de preparo
               </Button>
 
           </div>
-          
-          
+
+
         </Popup>
       </div>
     );
