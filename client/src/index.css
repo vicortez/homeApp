@@ -41,3 +41,11 @@ body {
 .pctscreen {
   width: 90% !important;
 }
+
+.popup-grid{
+  display: grid;
+  grid-template-columns: 50%;
+  grid-template-rows: 10% 50% 50%;
+  justify-content: center;
+  grid-gap: 0.1rem;
+}
