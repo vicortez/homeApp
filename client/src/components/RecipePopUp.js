@@ -87,8 +87,10 @@ class RecipePopUp extends React.Component {
             </Button>
           </div>
 
-          <div className={"center-childs-grid"}>
+          <div>
             {this.props.recipeTitle}
+            <br></br>
+            <br></br>
 
             <TextField
               id="outlined-name"
