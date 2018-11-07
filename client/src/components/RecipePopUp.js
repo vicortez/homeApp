@@ -81,7 +81,7 @@ class RecipePopUp extends React.Component {
           closeOnDocumentClick={false}
           onClose={this.props.togglePopUp}
         >
-          <div className="modal">
+          <div className= {"margin-auto"}>
             <Button className="close" onClick={this.props.onClose}>
               &times;
             </Button>
@@ -90,45 +90,54 @@ class RecipePopUp extends React.Component {
           <div className={"center-childs-grid"}>
             {this.props.recipeTitle}
 
-            <TextField
-              id="outlined-name"
-              label="Adicionar novo item"
-              className={classNames(classes.textField, "auto-margin")}
-              value={this.state.ingregientTyped}
-              onChange={this.handleChangeIngredient("ingregientTyped")}
-              margin="normal"
-              variant="outlined"
-            />
-            <Button                             // add ingredientes
-              variant="outlined"
-              color="primary"
-              className={classNames(styles.mybutton)}
-              onClick={() => {
-                this.callAddTaskIngredient();
-              }}
-            >
-              Adicionar ingrediente
+            <div>
+              <TextField
+                id="outlined-name"
+                label="Adicionar novo item"
+                className={classNames(classes.textField, "auto-margin")}
+                value={this.state.ingregientTyped}
+                onChange={this.handleChangeIngredient("ingregientTyped")}
+                margin="normal"
+                variant="outlined"
+              />
+              <br></br>
+              <Button                             // add ingredientes
+                variant="outlined"
+                color="primary"
+                className={classNames(styles.mybutton)}
+                onClick={() => {
+                  this.callAddTaskIngredient();
+                }}
+              >
+                Adicionar ingrediente
               </Button>
 
-            <TextField
-              id="outlined-name"
-              label="Adicionar novo item"
-              className={classNames(classes.textField, "auto-margin")}
-              value={this.state.methodTyped}
-              onChange={this.handleChangeMethod("methodTyped")}
-              margin="normal"
-              variant="outlined"
-            />
-            <Button                           // add method
-              variant="outlined"
-              color="primary"
-              className={classNames(styles.mybutton)}
-              onClick={() => {
-                this.callAddTaskMethod();
-              }}
-            >
-              Adicionar método de preparo
+            </div>
+            <br></br>
+
+            <div>
+              <TextField
+                id="outlined-name"
+                label="Adicionar novo item"
+                className={classNames(classes.textField, "auto-margin")}
+                value={this.state.methodTyped}
+                onChange={this.handleChangeMethod("methodTyped")}
+                margin="normal"
+                variant="outlined"
+              />
+              <br></br>
+              <Button                           // add method
+                  variant="outlined"
+                  color="primary"
+                  className={classNames(styles.mybutton)}
+                  onClick={() => {
+                    this.callAddTaskMethod();
+                  }}
+              >
+                  Adicionar método de preparo
               </Button>
+            </div>
+            
 
           </div>
 
