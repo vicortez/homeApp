@@ -8,7 +8,7 @@ exports.encodeQueryData = data => {
 };
 
 exports.getAll = entity => {
-  console.log("requested all " + entity)
+  console.log("requested all " + entity);
   return axios.get(`/${entity}/all/`);
 };
 
@@ -18,4 +18,13 @@ exports.postOne = (entity, body) => {
 
 exports.deleteSome = (entity, id) => {
   return axios.delete(`/${entity}/` + id);
+};
+
+exports.postOneRecipe = body => {
+  let body2 = {
+    title: "sopa de espinafre",
+    ingredients: ["agua", "legumens", "sopa"],
+    method: "adicionar tudo na panela e girar e comer"
+  };
+  return axios.post("/recipes", body2);
 };
