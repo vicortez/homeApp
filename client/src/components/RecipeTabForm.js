@@ -41,7 +41,7 @@ class RecipeTabForm extends React.Component {
   };
 
   callAddTask = () => {
-    this.props.addTask(this.state.taskTyped);
+    this.props.composeNewRecipe(this.state.taskTyped);
     this.clearInput();
   };
 

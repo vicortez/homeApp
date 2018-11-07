@@ -38,7 +38,7 @@ class RecipeTab extends React.Component {
     value: 0,
     recipes: [""],
     popupIsOpen: false,
-    recipeTyped: ""
+    recipeTitleTyped: ""
   };
 
   fetchFromDatabase = () => {
@@ -63,10 +63,10 @@ class RecipeTab extends React.Component {
     this.fetchFromDatabase();
   }
 
-  composeNewRecipe = () => {
+  composeNewRecipe = title => {
+    this.setRecipeTitle(title)
     this.togglePopUp();
     let body = {};
-    
   };
 
   addRecipe = recipeTyped => {
@@ -85,13 +85,13 @@ class RecipeTab extends React.Component {
 
   setRecipeTitle = title => {
     this.setState({
-      recipeTyped: title
+      recipeTitleTyped: title
     });
   };
 
   togglePopUp = () => {
     this.setState({ popupIsOpen: !this.state.popupIsOpen });
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -104,22 +104,18 @@ class RecipeTab extends React.Component {
       >
         <RecipePopUp
           open={this.state.popupIsOpen}
-          recipeTitle={this.state.recipeTyped}
-          setRecipeTitle={this.setRecipeTitle}
-          addTask={this.addRecipe}
+          recipeTitle={this.state.recipeTitleTyped}
+          addRecipe={this.addRecipe}
           onClose={this.togglePopUp}
-          
         />
         <RecipeTabForm
-          addTask={this.composeNewRecipe}
+          composeNewRecipe={this.composeNewRecipe}
           itemsKind={"recipes"}
           removeStrikethroughs={this.removeStrikethroughs}
         />
         <Divider />
         {this.state.loaded ? (
-          <RecipeList
-            recipeElements={this.state.recipes}
-          />
+          <RecipeList recipeElements={this.state.recipes} />
         ) : (
           <Loading />
         )}
