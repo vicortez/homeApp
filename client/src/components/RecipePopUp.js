@@ -34,12 +34,11 @@ const styles = theme => ({
   }
 });
 
-
 class RecipePopUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
-  };
+  }
 
   handleChangeIngredient = ingregientTyped => event => {
     this.setState({
@@ -73,7 +72,8 @@ class RecipePopUp extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    console.log("TITLE:");
+    console.log(this.props.recipeTitle);
     return (
       <div>
         <Popup
@@ -99,7 +99,7 @@ class RecipePopUp extends React.Component {
               margin="normal"
               variant="outlined"
             />
-            <Button                             // add ingredientes
+            <Button // add ingredientes
               variant="outlined"
               color="primary"
               className={classNames(styles.mybutton)}
@@ -108,7 +108,7 @@ class RecipePopUp extends React.Component {
               }}
             >
               Adicionar ingrediente
-              </Button>
+            </Button>
 
             <TextField
               id="outlined-name"
@@ -119,7 +119,7 @@ class RecipePopUp extends React.Component {
               margin="normal"
               variant="outlined"
             />
-            <Button                           // add method
+            <Button // add method
               variant="outlined"
               color="primary"
               className={classNames(styles.mybutton)}
@@ -128,11 +128,8 @@ class RecipePopUp extends React.Component {
               }}
             >
               Adicionar método de preparo
-              </Button>
-
+            </Button>
           </div>
-
-
         </Popup>
       </div>
     );
