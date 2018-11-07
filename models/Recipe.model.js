@@ -15,15 +15,13 @@ let RecipeSchema = new mongoose.Schema({
   },
 
   ingredients: {
+    // type: [{type:String}],
     type: [String],
     required: true,
     unique: false,
     lowercase: false,
     timestamps: true,
-    max: 1000,
-    validate: value => {
-      return !validator.isEmpty(value);
-    }
+    max: 1000
   },
 
   method: {

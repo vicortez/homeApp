@@ -13,7 +13,6 @@ import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 import "../index.css";
 import requests from "../requests";
-import MyGenericTab from "./MyGenericTab";
 import GenericTextTab from "./GenericTextTab";
 
 const styles = theme => ({

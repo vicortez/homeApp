@@ -23,8 +23,8 @@ exports.deleteSome = (entity, id) => {
 exports.postOneRecipe = body => {
   let body2 = {
     title: "sopa de espinafre",
-    ingredients: ["agua", "legumens", "sopa"],
-    method: "adicionar tudo na panela e girar e comer"
+    ingredients: ["agua", "legumens", "buneca"],
+    method: "adicionar tudo na panela e girar e é isso"
   };
   return axios.post("/recipes", body2);
 };
