@@ -40,34 +40,36 @@ class RecipePopUp extends React.Component {
     this.state = { open: false };
   }
 
-  handleChangeIngredient = ingregientTyped => event => {
+  handleChangeIngredient = ingredientTyped => event => {
     this.setState({
-      [ingregientTyped]: event.target.value
+      [ingredientTyped]: event.target.value
     });
   };
 
-  handleChangeMethod = methodTyped => event => {
+  handleChangeRecipe = RecipeTyped => event => {
     this.setState({
-      [methodTyped]: event.target.value
+      [RecipeTyped]: event.target.value
     });
   };
 
-  clearInputIngregient = () => {
+  clearInputIngredient = () => {
     this.state.ingredientTyped = "";
   };
 
-  callAddTaskIngredient = () => {
-    this.props.addTask(this.state.ingredientTyped);
+  callAddIngredient = () => {
+    this.props.addIngredient(this.state.ingredientTyped);
     this.clearInputIngredient();
   };
 
-  clearInputMethod = () => {
-    this.state.methodTyped = "";
-  };
+  // clearInputRecipe = () => {
+  //   this.state.RecipeTyped = "";
+  // };
 
-  callAddTaskMethod = () => {
-    this.props.addTask(this.state.methodTyped);
-    this.clearInputMethod();
+  callAddRecipe = () => {
+    this.props.addRecipe(this.state.RecipeTyped);
+    this.setState({
+      popUpOpen: false
+    })
   };
 
   render() {
@@ -96,8 +98,8 @@ class RecipePopUp extends React.Component {
                 id="outlined-name"
                 label="Adicionar novo ingrediente"
                 // className={classNames(classes.textField, "auto-margin")}
-                value={this.state.ingregientTyped}
-                onChange={this.handleChangeIngredient("ingregientTyped")}
+                value={this.state.ingredientTyped}
+                onChange={this.handleChangeIngredient("ingredientTyped")}
                 margin="normal"
                 variant="outlined"
               />
@@ -106,7 +108,7 @@ class RecipePopUp extends React.Component {
                 color="primary"
                 // className={classNames(styles.mybutton)}
                 onClick={() => {
-                  this.callAddTaskIngredient();
+                  this.callAddIngredient();
                 }}
               >
                 Adicionar ingrediente
@@ -116,22 +118,22 @@ class RecipePopUp extends React.Component {
             <div>
               <TextField
                 id="outlined-name"
-                label="Adicionar novo método de preparo"
+                label="Adicionar receita"
                 // className={classNames(classes.textField, "auto-margin")}
-                value={this.state.methodTyped}
-                onChange={this.handleChangeMethod("methodTyped")}
+                value={this.state.recipeTyped}
+                onChange={this.handleChangeRecipe("recipeTyped")}
                 margin="normal"
                 variant="outlined"
               />
-              <Button // add method
+              <Button // add recipe
                 variant="outlined"
                 color="primary"
                 // className={classNames(styles.mybutton)}
                 onClick={() => {
-                  this.callAddTaskMethod();
+                  this.callAddRecipe();
                 }}
               >
-                Adicionar método de preparo
+                Adicionar receita
               </Button>
             </div>
 

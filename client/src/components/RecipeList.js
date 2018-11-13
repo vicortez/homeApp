@@ -38,7 +38,7 @@ class RecipeList extends React.Component {
               <RecipeCard
                 title = {el.title}
                 ingredients = {el.ingredients}
-                method = {el.method}
+                recipe = {el.recipe}
               />
             </ListItem>
           );

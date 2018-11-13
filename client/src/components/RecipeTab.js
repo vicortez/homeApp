@@ -38,7 +38,12 @@ class RecipeTab extends React.Component {
     value: 0,
     recipes: [""],
     popupIsOpen: false,
-    recipeTitleTyped: ""
+    recipeTitleTyped: "",
+    currentRecipe: {
+      title: "",
+      ingredientsList: [],
+      Recipe: ""
+    }
   };
 
   fetchFromDatabase = () => {
@@ -70,12 +75,7 @@ class RecipeTab extends React.Component {
   };
 
   addRecipe = recipeTyped => {
-    let body = {
-      title: recipeTyped.title,
-      ingredients: recipeTyped.ingredients,
-      method: recipeTyped.method
-    };
-    requests.postOneRecipe(body).then(response => {
+    requests.postOneRecipe(recipeTyped).then(response => {
       this.setState({
         queryResponse: response.data
       });
@@ -83,9 +83,23 @@ class RecipeTab extends React.Component {
     });
   };
 
-  setRecipeTitle = title => {
+  addIngredient = ingredientTyped => {
+    let currentIngredientsArray = this.state.currentRecipe.ingredientsList;
+    currentIngredientsArray.push(ingredientTyped);
+    let recipe = this.state.currentRecipe;
+    recipe['ingredientsList'] = currentIngredientsArray;
     this.setState({
-      recipeTitleTyped: title
+      currentRecipe: recipe
+    })
+    console.log("current recipe updated:")
+    console.log(this.state.currentRecipe)
+  };
+
+  setRecipeTitle = title => {
+    let recipe = this.state.currentRecipe;
+    recipe['title'] = title;
+    this.setState({
+      currentRecipe: recipe
     });
   };
 
@@ -104,9 +118,11 @@ class RecipeTab extends React.Component {
       >
         <RecipePopUp
           open={this.state.popupIsOpen}
-          recipeTitle={this.state.recipeTitleTyped}
+          recipeTitle={this.state.currentRecipe.title}
           addRecipe={this.addRecipe}
           onClose={this.togglePopUp}
+          addIngredient={this.addIngredient}
+          addRecipe={this.addRecipe}
         />
         <RecipeTabForm
           composeNewRecipe={this.composeNewRecipe}
@@ -117,8 +133,8 @@ class RecipeTab extends React.Component {
         {this.state.loaded ? (
           <RecipeList recipeElements={this.state.recipes} />
         ) : (
-          <Loading />
-        )}
+            <Loading />
+          )}
       </div>
     );
   }

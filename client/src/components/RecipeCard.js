@@ -59,7 +59,7 @@ class RecipeCard extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title= {this.props.title}
+          title= {this.props.recipeTitle}
         />
 
         <CardActions className={classes.actions} disableActionSpacing>
