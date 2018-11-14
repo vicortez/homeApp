@@ -46,15 +46,19 @@ class RecipePopUp extends React.Component {
     });
   };
 
-  handleChangeRecipe = RecipeTyped => event => {
+  handleChangeMethod = methodTyped => event => {
     this.setState({
-      [RecipeTyped]: event.target.value
+      [methodTyped]: event.target.value
     });
   };
 
   clearInputIngredient = () => {
     this.state.ingredientTyped = "";
   };
+
+  clearInputMethod = () => {
+    this.state.methodTyped = "";
+  }
 
   callAddIngredient = () => {
     this.props.addIngredient(this.state.ingredientTyped);
@@ -66,10 +70,12 @@ class RecipePopUp extends React.Component {
   // };
 
   callAddRecipe = () => {
-    this.props.addRecipe(this.state.RecipeTyped);
+    this.props.setCurrentMethod(this.state.methodTyped);
+    this.props.addRecipe();
     this.setState({
       popUpOpen: false
     })
+    this.clearInputMethod();
   };
 
   render() {
@@ -118,10 +124,10 @@ class RecipePopUp extends React.Component {
             <div>
               <TextField
                 id="outlined-name"
-                label="Adicionar receita"
+                label="Adicionar método de preparo"
                 // className={classNames(classes.textField, "auto-margin")}
-                value={this.state.recipeTyped}
-                onChange={this.handleChangeRecipe("recipeTyped")}
+                value={this.state.methodTyped}
+                onChange={this.handleChangeMethod("methodTyped")}
                 margin="normal"
                 variant="outlined"
               />

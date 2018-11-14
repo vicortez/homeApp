@@ -42,7 +42,7 @@ class RecipeTab extends React.Component {
     currentRecipe: {
       title: "",
       ingredientsList: [],
-      Recipe: ""
+      method: ""
     }
   };
 
@@ -74,13 +74,15 @@ class RecipeTab extends React.Component {
     let body = {};
   };
 
-  addRecipe = recipeTyped => {
-    requests.postOneRecipe(recipeTyped).then(response => {
+  addRecipe = () => {
+    requests.postOneRecipe(this.state.currentRecipe).then(response => {
       this.setState({
         queryResponse: response.data
       });
       this.fetchFromDatabase();
     });
+    console.log("method:")
+    console.log(this.state.currentRecipe)
   };
 
   addIngredient = ingredientTyped => {
@@ -103,6 +105,14 @@ class RecipeTab extends React.Component {
     });
   };
 
+  setCurrentMethod = methodTyped => {
+    let recipe = this.state.currentRecipe;
+    recipe['method'] = methodTyped;
+    this.setState({
+      currentRecipe: recipe
+    });
+  }
+
   togglePopUp = () => {
     this.setState({ popupIsOpen: !this.state.popupIsOpen });
   };
@@ -123,6 +133,7 @@ class RecipeTab extends React.Component {
           onClose={this.togglePopUp}
           addIngredient={this.addIngredient}
           addRecipe={this.addRecipe}
+          setCurrentMethod={this.setCurrentMethod}
         />
         <RecipeTabForm
           composeNewRecipe={this.composeNewRecipe}
