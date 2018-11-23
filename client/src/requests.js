@@ -16,7 +16,7 @@ exports.postOne = (entity, body) => {
   return axios.post(`/${entity}`, body);
 };
 
-exports.deleteSome = (entity, id) => {
+exports.deleteOne = (entity, id) => {
   return axios.delete(`/${entity}/` + id);
 };
 
@@ -25,3 +25,4 @@ exports.postOneRecipe = body => {
   console.log(body)
   return axios.post("/recipes", body);
 };
+

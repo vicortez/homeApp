@@ -40,6 +40,8 @@ class RecipeList extends React.Component {
                 title = {el.title}
                 ingredientsList = {el.ingredientsList}
                 method = {el.method}
+                id = {el._id}
+                deleteRecipe={this.props.deleteRecipe}
               />
             </ListItem>
           );

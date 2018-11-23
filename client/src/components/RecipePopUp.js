@@ -80,8 +80,6 @@ class RecipePopUp extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("TITLE:");
-    console.log(this.props.recipeTitle);
     return (
       <div>
         <Popup

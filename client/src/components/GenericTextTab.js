@@ -77,7 +77,7 @@ class GenericTextTab extends React.Component {
     this.state[this.props.itemsKind].map(el => {
       if (el.strikethroughed) {
         requests
-          .deleteSome(this.props.itemsKind, el._id)
+          .deleteOne(this.props.itemsKind, el._id)
           .then(response => {
             this.setState({
               queryResponse: response.data,

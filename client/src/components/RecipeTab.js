@@ -117,6 +117,10 @@ class RecipeTab extends React.Component {
     this.setState({ popupIsOpen: !this.state.popupIsOpen });
   };
 
+  deleteOneRecipe = (id) =>{
+    requests.deleteOne("recipes",id);
+  }
+
   render() {
     const { classes } = this.props;
     console.log("rendering. state:");
@@ -142,7 +146,7 @@ class RecipeTab extends React.Component {
         />
         <Divider />
         {this.state.loaded ? (
-          <RecipeList recipeElements={this.state.recipes} />
+          <RecipeList recipeElements={this.state.recipes} deleteRecipe={this.deleteOneRecipe} />
         ) : (
             <Loading />
           )}

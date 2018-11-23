@@ -42,10 +42,27 @@ body {
   width: 90% !important;
 }
 
-.popup-grid{
+.popup-grid {
   display: grid;
   grid-template-columns: 50%;
   grid-template-rows: 10% 50% 50%;
   justify-content: center;
   grid-gap: 0.1rem;
+}
+
+hr.style-two {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.center-delete {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
 }
