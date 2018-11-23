@@ -27,6 +27,7 @@ class RecipeList extends React.Component {
     return (
       <List component="nav">
         {this.props.recipeElements.map(el => {
+          console.log(el)
           return (
             <ListItem
               key={el._id}
@@ -37,8 +38,8 @@ class RecipeList extends React.Component {
             >
               <RecipeCard
                 title = {el.title}
-                ingredients = {el.ingredients}
-                recipe = {el.recipe}
+                ingredientsList = {el.ingredientsList}
+                method = {el.method}
               />
             </ListItem>
           );

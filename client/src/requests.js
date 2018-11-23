@@ -21,10 +21,7 @@ exports.deleteSome = (entity, id) => {
 };
 
 exports.postOneRecipe = body => {
-  let body2 = {
-    title: "sopa de espinafre",
-    ingredients: ["agua", "legumens", "boneca"],
-    method: "adicionar tudo na panela e girar e é isso"
-  };
-  return axios.post("/recipes", body2);
+  console.log("body1:")
+  console.log(body)
+  return axios.post("/recipes", body);
 };

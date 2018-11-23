@@ -56,10 +56,12 @@ class RecipeCard extends React.Component {
   render() {
     const { classes } = this.props;
 
+
     return (
+      
       <Card className={classes.card}>
         <CardHeader
-          title= {this.props.recipeTitle}
+          title= {this.props.title}
         />
 
         <CardActions className={classes.actions} disableActionSpacing>
@@ -73,13 +75,15 @@ class RecipeCard extends React.Component {
             aria-label="Show more"
           >
             <ExpandMoreIcon />
+            
           </IconButton>
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        
           <CardContent>
             <Typography paragraph>Ingredientes:</Typography>
             <Typography paragraph>
-              {this.props.igredients}
+              {this.props.ingredientsList}
             </Typography>
             
             <Typography paragraph>Método:</Typography>

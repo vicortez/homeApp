@@ -51,7 +51,7 @@ class RecipeTab extends React.Component {
       .getAll("recipes")
       .then(response => {
         let tasksArray = response.data.map(el => {
-          return { text: el.text, _id: el._id, strikethroughed: false };
+          return { title: el.title, _id: el._id, ingredientsList: el.ingredientsList, method: el.method };
         });
 
         this.setState({

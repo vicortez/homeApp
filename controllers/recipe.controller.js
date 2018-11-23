@@ -7,10 +7,10 @@ exports.add_recipe = (req, res) => {
 
   let recipe = new Recipe({
     title: req.body.title,
-    ingredients: req.body.ingredients,
+    ingredientsList: req.body.ingredientsList,
     method: req.body.method
   });
-  console.log(recipe.ingredients.constructor);
+  console.log(recipe.ingredientsList);
 
   recipe
     .save()
