@@ -18,8 +18,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import "../index.css";
-
 
 const styles = theme => ({
   card: {
@@ -49,9 +49,8 @@ const styles = theme => ({
     backgroundColor: red[500]
   },
   rightIcon: {
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing.unit
   }
-  
 });
 
 class RecipeCard extends React.Component {
@@ -62,15 +61,19 @@ class RecipeCard extends React.Component {
   };
 
   deleteCard = () => {
-    this.props.deleteRecipe(this.props.id);
+    this.props.deleteRecipe(this.props.recipe._id);
   };
+
+  editCard = () => {
+    
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <Card className={classes.card}>
-        <CardHeader title={this.props.title} />
+        <CardHeader title={this.props.recipe.title} />
 
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton
@@ -84,27 +87,46 @@ class RecipeCard extends React.Component {
             <ExpandMoreIcon />
           </IconButton>
         </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit className={"center-delete"}>
+        <Collapse
+          in={this.state.expanded}
+          timeout="auto"
+          unmountOnExit
+          className={"center-delete"}
+        >
           <CardContent>
             <Typography paragraph>
               <b>Ingredientes:</b>
             </Typography>
-            {this.props.ingredientsList.map(el => {
+            {this.props.recipe.ingredientsList.map(el => {
               return <p>{el}</p>;
             })}
             <hr class="style-two" />
             <Typography paragraph>
               <b>Método</b>:
             </Typography>
-            <Typography>{this.props.method}</Typography>
+            <Typography>{this.props.recipe.method}</Typography>
           </CardContent>
           <Button
             variant="outlined"
             color="secondary"
             className={"center-delete"}
+            onClick={() => {
+              this.props.deleteRecipe(this.props.recipe._id);
+            }}
           >
-            Delete
+            Deletar
             <DeleteIcon className={classes.rightIcon} />
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            className={"center-delete"}
+            onClick={() => {
+              this.props.editRecipe(this.props.recipe);
+            }}
+          >
+            Alterar
+            <AssignmentIcon />
           </Button>
         </Collapse>
       </Card>

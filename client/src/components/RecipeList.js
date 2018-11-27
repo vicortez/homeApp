@@ -37,11 +37,9 @@ class RecipeList extends React.Component {
               className={classNames("low-padding-vertically")}
             >
               <RecipeCard
-                title = {el.title}
-                ingredientsList = {el.ingredientsList}
-                method = {el.method}
-                id = {el._id}
+                recipe = {el}
                 deleteRecipe={this.props.deleteRecipe}
+                editRecipe={this.props.editRecipe}
               />
             </ListItem>
           );

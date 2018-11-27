@@ -14,7 +14,7 @@ router.post('/', recipe_controller.add_recipe);
 
 // router.get('/:id', todoTask_controller.get_task_by_id);
 
-// router.put('/:id/update', product_controller.product_update);
+router.put('/:id/', recipe_controller.update_recipe);
 
 router.delete('/:id', recipe_controller.delete_recipe);
 

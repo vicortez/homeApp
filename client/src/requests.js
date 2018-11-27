@@ -21,8 +21,13 @@ exports.deleteOne = (entity, id) => {
 };
 
 exports.postOneRecipe = body => {
-  console.log("body1:")
-  console.log(body)
   return axios.post("/recipes", body);
+};
+
+exports.editOneRecipe = (id,recipe) => {
+  recipe["id"] = id;
+  console.log("asked to change:")
+  console.log(recipe)
+  return axios.put("/recipes", recipe);
 };
 

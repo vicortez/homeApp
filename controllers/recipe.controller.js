@@ -37,8 +37,15 @@ exports.get_all_recipe = (req, res) => {
 
 exports.delete_recipe = (req, res) => {
   console.log("someone asked to delete a recipe");
+  console.log(req.params.id)
   Recipe.findByIdAndRemove(req.params.id, err => {
     if (err) return next(err);
     res.send("deleted successfully");
   });
 };
+
+exports.update_recipe = (req,res) =>{
+  console.log("someone asked to edit a recipe");
+  console.log(req.body);
+  Recipe.findByIdAndUpdate(req.body.id,req.body)
+}
