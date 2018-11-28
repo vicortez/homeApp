@@ -14,6 +14,8 @@ import Loading from "./Loading";
 import SimpleTextList from "./SimpleTextList";
 import RecipeList from "./RecipeList";
 import Popup from "reactjs-popup";
+import DeleteIcon from "@material-ui/icons/Delete";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 
 const styles = theme => ({
   root: {
@@ -58,7 +60,7 @@ class RecipePopUp extends React.Component {
 
   clearInputMethod = () => {
     this.state.methodTyped = "";
-  }
+  };
 
   callAddIngredient = () => {
     this.props.addIngredient(this.state.ingredientTyped);
@@ -74,12 +76,24 @@ class RecipePopUp extends React.Component {
     this.props.addRecipe();
     this.setState({
       popUpOpen: false
-    })
+    });
+    this.clearInputMethod();
+  };
+  callEditRecipe = () => {
+    this.props.setCurrentMethod(this.state.methodTyped);
+    this.props.editRecipe();
+    this.setState({
+      popUpOpen: false
+    });
     this.clearInputMethod();
   };
 
   render() {
     const { classes } = this.props;
+    console.log("ingredients:");
+    console.log(this.props.getAllIngredients());
+    console.log("ingredients:");
+    console.log(this.props.getAllIngredients());
     return (
       <div>
         <Popup
@@ -96,6 +110,23 @@ class RecipePopUp extends React.Component {
 
           <div className={"popup-grid"}>
             {this.props.recipeTitle}
+            <div>
+              {this.props.getAllIngredients().map((ingred, pos) => {
+                return (
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    className={"center-delete"}
+                    onClick={() => {
+                      this.props.deleteIngredient(pos);
+                    }}
+                  >
+                    {ingred}
+                    <DeleteIcon className={classes.rightIcon} />
+                  </Button>
+                );
+              })}
+            </div>
 
             <div>
               <TextField
@@ -122,30 +153,29 @@ class RecipePopUp extends React.Component {
             <div>
               <TextField
                 id="outlined-name"
-                label="Adicionar método de preparo"
+                label="Modificar método de preparo"
                 // className={classNames(classes.textField, "auto-margin")}
                 value={this.state.methodTyped}
                 onChange={this.handleChangeMethod("methodTyped")}
                 margin="normal"
                 variant="outlined"
-              />
+              >
+                {this.props.getMethod()}
+              </TextField>
               <Button // add recipe
                 variant="outlined"
                 color="primary"
                 // className={classNames(styles.mybutton)}
                 onClick={() => {
-                  this.callAddRecipe();
+                  this.callEditRecipe();
                 }}
               >
-                Adicionar receita
+                Confirmar modificações na Receita
               </Button>
             </div>
-
-
-
           </div>
-          <br></br>
-          <br></br>
+          <br />
+          <br />
         </Popup>
       </div>
     );

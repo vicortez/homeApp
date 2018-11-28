@@ -22,12 +22,9 @@ class RecipeList extends React.Component {
   state = {};
 
   render() {
-    console.log("Recipes:");
-    console.log(this.props.recipeElements);
     return (
       <List component="nav">
         {this.props.recipeElements.map(el => {
-          console.log(el)
           return (
             <ListItem
               key={el._id}

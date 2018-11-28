@@ -49,8 +49,6 @@ class GenericTextTab extends React.Component {
           [this.props.itemsKind]: tasksArray,
           loaded: true
         });
-        console.log("fetched, state:");
-        console.log(this.state);
       })
       .catch(error => console.log(error));
   };
@@ -108,8 +106,6 @@ class GenericTextTab extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("rendering. state:");
-    console.log(this.state);
 
     return (
       <div

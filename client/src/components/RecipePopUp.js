@@ -101,7 +101,7 @@ class RecipePopUp extends React.Component {
               <TextField
                 id="outlined-name"
                 label="Adicionar novo ingrediente"
-                // className={classNames(classes.textField, "auto-margin")}
+                className={"textField-css"}
                 value={this.state.ingredientTyped}
                 onChange={this.handleChangeIngredient("ingredientTyped")}
                 margin="normal"
@@ -110,7 +110,7 @@ class RecipePopUp extends React.Component {
               <Button // add ingredientes
                 variant="outlined"
                 color="primary"
-                // className={classNames(styles.mybutton)}
+                className={"button-css"}
                 onClick={() => {
                   this.callAddIngredient();
                 }}
@@ -123,7 +123,7 @@ class RecipePopUp extends React.Component {
               <TextField
                 id="outlined-name"
                 label="Adicionar método de preparo"
-                // className={classNames(classes.textField, "auto-margin")}
+                className={"textField-css"}
                 value={this.state.methodTyped}
                 onChange={this.handleChangeMethod("methodTyped")}
                 margin="normal"
@@ -132,7 +132,7 @@ class RecipePopUp extends React.Component {
               <Button // add recipe
                 variant="outlined"
                 color="primary"
-                // className={classNames(styles.mybutton)}
+                className={"button-css"}
                 onClick={() => {
                   this.callAddRecipe();
                 }}

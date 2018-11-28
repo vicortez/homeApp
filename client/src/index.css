@@ -44,10 +44,10 @@ body {
 
 .popup-grid {
   display: grid;
-  grid-template-columns: 50%;
-  grid-template-rows: 10% 50% 50%;
+  grid-template-columns: 50% !important;
   justify-content: center;
   grid-gap: 0.1rem;
+  width: auto !important;
 }
 
 hr.style-two {
@@ -65,4 +65,18 @@ hr.style-two {
   margin-left: auto !important;
   margin-right: auto !important;
   text-align: center !important;
+}
+
+.textField-css {
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+.button-css{
+  position: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
 }

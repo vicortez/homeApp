@@ -100,7 +100,7 @@ class RecipeCard extends React.Component {
             {this.props.recipe.ingredientsList.map(el => {
               return <p>{el}</p>;
             })}
-            <hr class="style-two" />
+            <hr className="style-two" />
             <Typography paragraph>
               <b>Método</b>:
             </Typography>

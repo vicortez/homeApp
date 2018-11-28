@@ -20,8 +20,6 @@ class SimpleTextList extends React.Component {
   state = {};
 
   render() {
-    console.log("TextElements:");
-    console.log(this.props.textElements);
     return (
       <List component="nav">
         {this.props.textElements.map(el => {

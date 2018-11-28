@@ -20,13 +20,12 @@ exports.deleteOne = (entity, id) => {
   return axios.delete(`/${entity}/` + id);
 };
 
-exports.postOneRecipe = body => {
-  return axios.post("/recipes", body);
+exports.postOneRecipe = recipe => {
+  return axios.post("/recipes", recipe);
 };
 
-exports.editOneRecipe = (id,recipe) => {
-  recipe["id"] = id;
-  console.log("asked to change:")
+exports.editOneRecipe = (recipe) => {
+  console.log("(requests)asked to change:")
   console.log(recipe)
   return axios.put("/recipes", recipe);
 };

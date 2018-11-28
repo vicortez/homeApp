@@ -18,7 +18,6 @@ import Popup from "reactjs-popup";
 import RecipePopUp from "./RecipePopUp";
 import RecipeEditPopUp from "./RecipeEditPopUp";
 
-
 const styles = theme => ({
   root: {
     width: "100%",
@@ -127,11 +126,29 @@ class RecipeTab extends React.Component {
     });
   };
 
+  getAllIngredients = () => {
+    return this.state.currentRecipe.ingredientsList;
+  };
+
   togglePopUp = () => {
     this.setState({ popupIsOpen: !this.state.popupIsOpen });
   };
+
   toggleEditPopUp = () => {
-    this.setState({ editPopupIsOpen: !this.state.editPopupIsOpen });
+    this.setState({
+      editPopupIsOpen: !this.state.editPopupIsOpen
+    });
+  };
+
+  closeEditPopUp = () => {
+    this.toggleEditPopUp();
+    this.setState({
+      currentRecipe: {
+        title: "",
+        ingredientsList: [],
+        method: ""
+      }
+    });
   };
 
   deleteOneRecipe = id => {
@@ -142,26 +159,56 @@ class RecipeTab extends React.Component {
       this.fetchFromDatabase();
     });
   };
-  editOneRecipe = recipe => {
+
+  editOneRecipe = () => {
+    let recipe = this.state.currentRecipe;
+    requests.editOneRecipe(recipe).then(response => {
+      this.setState({
+        requestResponse: response
+      });
+
+      this.fetchFromDatabase();
+    });
+    console.log("response")
+    console.log(this.state.requestResponse)
+  };
+
+
+  prepareToEditRecipe = (recipe) => {
     this.setState({
       currentRecipe: recipe
     })
     this.toggleEditPopUp();
   };
-  requestEditPopUp = (id)=> {
+
+  deleteIngredient = pos => {
+    let currentIngredientsArray = this.state.currentRecipe.ingredientsList;
+    currentIngredientsArray.splice(pos, 1);
     let recipe = this.state.currentRecipe;
-    requests.editOneRecipe(id, recipe).then(response => {
-      this.setState({
-        requestResponse: response
-      });
-      this.fetchFromDatabase();
-    });    
-  }
+    recipe["ingredientsList"] = currentIngredientsArray;
+    this.setState({
+      currentRecipe: recipe
+    });
+  };
+
+  editCurrentMethod = methodTyped => {
+    let recipe = this.state.currentRecipe;
+    recipe["method"] = methodTyped;
+    this.setState({
+      currentRecipe: recipe
+    });
+    console.log("current recipe updated:");
+    console.log(this.state.currentRecipe);
+  };
+
+  getCurrentMethod = () => {
+    return this.state.currentRecipe.method;
+  };
 
   render() {
     const { classes } = this.props;
-    console.log("rendering. state:");
-    console.log(this.state);
+    console.log("current recipe");
+    console.log(this.state.currentRecipe);
 
     return (
       <div
@@ -179,10 +226,13 @@ class RecipeTab extends React.Component {
           open={this.state.editPopupIsOpen}
           recipeTitle={this.state.currentRecipe.title}
           editRecipe={this.editOneRecipe}
-          onClose={this.toggleEditPopUp}
+          onClose={this.closeEditPopUp}
           addIngredient={this.addIngredient}
-          editIngredient={this.editIngredient}
+          deleteIngredient={this.deleteIngredient}
+          editMethod={this.editCurrentMethod}
           setCurrentMethod={this.setCurrentMethod}
+          getAllIngredients={this.getAllIngredients}
+          getMethod={this.getCurrentMethod}
         />
         <RecipeTabForm
           composeNewRecipe={this.composeNewRecipe}
@@ -194,7 +244,7 @@ class RecipeTab extends React.Component {
           <RecipeList
             recipeElements={this.state.recipes}
             deleteRecipe={this.deleteOneRecipe}
-            editRecipe={this.editOneRecipe}
+            editRecipe={this.prepareToEditRecipe}
           />
         ) : (
           <Loading />

@@ -7,7 +7,7 @@ exports.test = function(req, res) {
 
 exports.add_shoppingListItem = (req, res) => {
   console.log("adding shoppingListItem");
-  console.log(req.body);
+  //console.log(req.body);
 
   let todo = new ShoppingListItem({
     text: req.body.text
@@ -28,7 +28,7 @@ exports.get_all_shoppingListItems = (req, res) => {
   console.log("comeone asked to see all shoppingListItems");
   ShoppingListItem.find()
     .then(doc => {
-      console.log(doc);
+      //console.log(doc);
       res.send(doc);
     })
     .catch(err => {
