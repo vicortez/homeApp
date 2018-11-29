@@ -102,7 +102,7 @@ class RecipeCard extends React.Component {
             })}
             <hr className="style-two" />
             <Typography paragraph>
-              <b>Método</b>:
+              <b>Modo de preparo</b>:
             </Typography>
             <Typography>{this.props.recipe.method}</Typography>
           </CardContent>
