@@ -42,7 +42,7 @@ class GenericTextTab extends React.Component {
       .getAll(this.props.itemsKind)
       .then(response => {
         let tasksArray = response.data.map(el => {
-          return { text: el.text, _id: el._id, strikethroughed: false };
+          return { text: el.text, _id: el._id, date:el.date, strikethroughed: false };
         });
 
         this.setState({

@@ -12,6 +12,10 @@ let NoticeSchema = new mongoose.Schema({
     validate: value => {
       return !validator.isEmpty(value);
     }
+  },
+  date:{
+    type: String,
+    required:true
   }
 });
 

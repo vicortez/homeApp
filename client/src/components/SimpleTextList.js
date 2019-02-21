@@ -40,6 +40,7 @@ class SimpleTextList extends React.Component {
                 }
                 primary={el.text}
               />
+              <p className="italic">{el.date}</p>
             </ListItem>
           );
         })}

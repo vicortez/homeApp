@@ -80,3 +80,12 @@ hr.style-two {
   margin-right: auto;
   width: auto;
 }
+@font-face {
+  font-family: 'wireone';
+  src: url(Taviraj-Italic.ttf);
+}
+.italic{
+  font-family: 'wireone';
+
+
+}

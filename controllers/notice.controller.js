@@ -5,8 +5,14 @@ exports.add_notice = (req, res) => {
   console.log("adding entry");
   console.log(req.body);
 
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1; //January is 0!
+  let yyyy = today.getFullYear();
+  today = dd + '/' + mm + '/' + yyyy;
   let notice = new Notice({
-    text: req.body.text
+    text: req.body.text,
+    date: today
   });
 
   notice
