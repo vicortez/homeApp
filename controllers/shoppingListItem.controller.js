@@ -6,8 +6,8 @@ exports.test = function(req, res) {
 };
 
 exports.add_shoppingListItem = (req, res) => {
+  const Database = require("../models/Database");
   console.log("adding shoppingListItem");
-  //console.log(req.body);
 
   let todo = new ShoppingListItem({
     text: req.body.text
@@ -25,6 +25,7 @@ exports.add_shoppingListItem = (req, res) => {
 };
 
 exports.get_all_shoppingListItems = (req, res) => {
+  const Database = require("../models/Database");
   console.log("comeone asked to see all shoppingListItems");
   ShoppingListItem.find()
     .then(doc => {
@@ -37,6 +38,7 @@ exports.get_all_shoppingListItems = (req, res) => {
 };
 
 exports.delete_shoppingListItem = (req, res) => {
+  const Database = require("../models/Database");
   console.log("comeone asked to delete a shoppingListItem");
   ShoppingListItem.findByIdAndRemove(req.params.id, err => {
     if (err) return next(err);
