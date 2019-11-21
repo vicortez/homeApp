@@ -1,0 +1,22 @@
+{
+  "ids": {
+    "Todo": 6,
+    "ShoppingListItem": 2,
+    "Notice": 2
+  },
+  "models": {
+    "Todo": {
+      "1": "{\"title\":\"Take over the galaxy\",\"desc\":\"MWAHAHAHAHAHAHAHAHAHAHAHAHAMWAHAHAHAHAHAHAHAHAHAHAHAHA\",\"id\":1}",
+      "2": "{\"title\":\"destroy alderaan\",\"desc\":\"Make sure there are no survivors left!\",\"id\":2}",
+      "3": "{\"title\":\"play space invaders\",\"desc\":\"Become the very best!\",\"id\":3}",
+      "4": "{\"title\":\"crush rebel scum\",\"desc\":\"Every.Last.One.\",\"id\":4}",
+      "5": "{\"title\":\"get the milk\",\"id\":5}"
+    },
+    "ShoppingListItem": {
+      "1": "{\"text\":\"coca cola\",\"crossedOut\":false,\"id\":1}"
+    },
+    "Notice": {
+      "1": "{\"text\":\"acordar victor\",\"date\":\"25/09/2019\",\"crossedOut\":false,\"id\":\"1\"}"
+    }
+  }
+}
